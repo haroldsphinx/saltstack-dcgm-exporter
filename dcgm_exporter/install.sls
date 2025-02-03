@@ -27,6 +27,8 @@
     - name: {{ dcgm_exporter_git_url }}
     - target: /tmp/nvidia_dcgm_exporter
     - branch: {{ dcgm_exporter_version }}
+    - require:
+      - file: "DCGM Exporter: Create metrics directory"
 
 "DCGM Exporter: Compile DCGM Exporter Binary":
   cmd.run:
@@ -47,7 +49,6 @@
     - mode: 0755
     - onchanges:
       - cmd: "DCGM Exporter: Compile DCGM Exporter Binary"
-
 
 "DCGM Exporter: Change file permissions":
   file.managed:
@@ -84,12 +85,10 @@
     - makedirs: True
     - dir_mode: 755
 
-"DCGM Exporter: Start servvice":
+"DCGM Exporter: Start service":
   service.running:
     - name: dcgm_exporter.service
     - enable: True
     - reload: True
     - watch:
-      - file: "DCGM Exporter: Create env file"
       - file: "DCGM Exporter: Create service file"
-      - file: "DCGM Exporter: Install dcgm_exporter"
