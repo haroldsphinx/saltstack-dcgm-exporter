@@ -1,0 +1,3 @@
+{%- import_yaml slspath + "/defaults.yaml" as default_vars %}
+
+{%- set dcgmexporter = salt['pillar.get']('dcgm_exporter', default=default_vars, merge=True) %}

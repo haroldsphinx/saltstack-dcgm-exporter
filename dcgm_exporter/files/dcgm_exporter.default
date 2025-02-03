@@ -1,0 +1,1 @@
+OPTIONS='--collectors=/etc/nvidia_dcgm_exporter/counters.csv  --address={{ nvidia_dcgm_exporter_web_listen_address }}'

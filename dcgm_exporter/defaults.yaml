@@ -1,0 +1,5 @@
+enabled: True
+dcgm_exporter_version: 1.7.0
+user: prometheus
+group: prometheus
+dcgm_exporter_git_url: https://github.com/NVIDIA/dcgm_exporter.git

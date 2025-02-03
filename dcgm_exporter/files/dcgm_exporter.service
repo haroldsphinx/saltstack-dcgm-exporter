@@ -1,0 +1,21 @@
+[Unit]
+Description=Prometheus nVIDIA DCGM Exporter
+After=network-online.target
+
+[Service]
+Type=simple
+User={{ dcgmexporter.user }}
+Group={{ dcgmexporter.group }}
+ExecStart=/usr/local/bin/nvidia_dcgm_exporter $OPTIONS
+
+SyslogIdentifier=ndcgm_exporter
+Restart=always
+RestartSec=1
+StartLimitInterval=0
+
+ProtectHome=yes
+NoNewPrivileges=yes
+
+
+[Install]
+WantedBy=multi-user.target
